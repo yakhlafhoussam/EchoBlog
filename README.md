@@ -98,3 +98,7 @@ All users inherit from a **common abstract `User` class**.
 ### Class Diagram
 
 ![Class Diagram](/UML/class.png)
+
+### ER Diagram
+
+![Entity Relationship Diagram](/UML/erd.png)
