@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Config;
+
+use PDO;
+use PDOException;
+
+class Database
+{
+    private $servername = 'localhost';
+    private $username = 'HoussamYK';
+    private $password = 'houssam.123.321';
+    private $dbname = 'library';
+
+    public function connect()
+    {
+        try {
+            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $conn;
+        } catch (PDOException $e) {
+            $controllerClass = "App\\Controllers\\WrongController";
+            $controller = new $controllerClass();
+            $controller->index();
+            exit();
+        }
+    }
+}
