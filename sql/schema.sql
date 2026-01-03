@@ -7,7 +7,7 @@ CREATE TABLE users (
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(500) NOT NULL,
     role ENUM ('author', 'admin', 'reader') DEFAULT 'reader' NOT NULL
 );
 

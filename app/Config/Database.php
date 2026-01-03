@@ -10,7 +10,7 @@ class Database
     private $servername = 'localhost';
     private $username = 'HoussamYK';
     private $password = 'houssam.123.321';
-    private $dbname = 'library';
+    private $dbname = 'echoblog';
 
     public function connect()
     {
