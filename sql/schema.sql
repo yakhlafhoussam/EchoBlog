@@ -8,7 +8,8 @@ CREATE TABLE users (
     lastName VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(500) NOT NULL,
-    role ENUM ('author', 'admin', 'reader') DEFAULT 'reader' NOT NULL
+    role ENUM ('author', 'admin', 'reader') DEFAULT 'reader' NOT NULL,
+    situation ENUM ('yes', 'no') DEFAULT 'no'
 );
 
 CREATE TABLE articles(
