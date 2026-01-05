@@ -21,10 +21,25 @@ CREATE TABLE articles(
     FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE categories(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    icon VARCHAR(50) NOT NULL,
+    color VARCHAR(50) NOT NULL
+);
+
 create table likes(
     id INT AUTO_INCREMENT PRIMARY KEY,
     article_id int NOT NULL,
     reader_id int NOT NULL,
+    FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
+    FOREIGN KEY (reader_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+create table comments(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
     FOREIGN KEY (reader_id) REFERENCES users(id) ON DELETE CASCADE
 );

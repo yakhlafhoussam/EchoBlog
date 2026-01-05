@@ -32,4 +32,12 @@ class Admin extends User
         $stmt->execute([$id]);
         $_SESSION['successmsg'] = 'The request has successfully refused!';
     }
+    public function addCategory($title, $icon, $color) {
+        $database = new Database();
+        $conn = $database->connect();
+        $stmt = $conn->prepare("INSERT INTO categories (name, icon, color) VALUES (?, ?, ?)");
+        $stmt->execute([$title, $icon, $color]);
+        $_SESSION['successmsg'] = 'The category has added successfully!';
+        header('location: /categories');
+    }
 }

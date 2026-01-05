@@ -41,6 +41,7 @@
     <?php
     include __DIR__ . '/../templates/footer.php';
     ?>
+    <div id="page" data-name="<?php echo $view ?>" class="w-0 h-0 hidden"></div>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="/assets/script.js"></script>
 </body>

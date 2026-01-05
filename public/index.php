@@ -22,4 +22,5 @@ $router->post('/', 'HomeController@newuser');
 $router->get('/users', 'UsersController@index');
 $router->post('/users', 'UsersController@request');
 $router->get('/categories', 'CategoriesController@index');
+$router->post('/categories', 'CategoriesController@category');
 $router->dispatch();

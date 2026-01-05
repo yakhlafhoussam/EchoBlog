@@ -1,5 +1,7 @@
 const errormsg = document.querySelector('#error');
 const successmsg = document.querySelector('#success');
+const page = document.querySelector('#page').dataset.name;
+
 
 if (errormsg.innerHTML != '') {
     gsap.to(document.querySelector("#toast0"), {
@@ -39,4 +41,12 @@ if (errormsg.innerHTML != '') {
             });
         }
     });
+}
+
+if (page == "categories") {
+    const input = document.getElementById('colorInput');
+    const preview = document.getElementById('colorPreview');
+    input.addEventListener('input', () => {
+    preview.style.background = input.value;
+});
 }

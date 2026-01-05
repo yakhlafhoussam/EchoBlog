@@ -11,11 +11,55 @@
         </h1>
     </div>
     <div class="space-y-2 mb-8">
-        <h1 class="text-3xl text-black font-bold px-5">User management</h1>
-        <p class="text-gray-500 font-semibold px-5">Manage your users members and their account permissions here.</p>
+        <h1 class="text-3xl text-black font-bold px-5">Categorys management</h1>
+        <p class="text-gray-500 font-semibold px-5">Manage your categorys of the articles here.</p>
     </div>
-    <div class="flex items-end px-5 mb-5 gap-2">
-        <h1 class="text-2xl text-black font-semibold">All Users</h1>
-        <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['users']) ?></h1>
+    <div class="w-full flex gap-2">
+        <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
+            <h1 class="text-2xl text-black font-semibold"><i class="fas fa-icons"></i> All Category</h1>
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['users']) ?> Category</h1>
+        </div>
+        <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
+            <h1 class="text-2xl text-black font-semibold"><i class="fas fa-newspaper"></i> All Article</h1>
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['users']) ?> Article</h1>
+        </div>
+        <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
+            <h1 class="text-2xl text-black font-semibold"><i class="fas fa-star"></i> Most category used</h1>
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['users']) ?> Article</h1>
+        </div>
+        <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
+            <h1 class="text-2xl text-black font-semibold"><i class="fas fa-star-half"></i> Least category used</h1>
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['users']) ?> Article</h1>
+        </div>
+    </div>
+    <div class="w-full flex justify-between">
+        <div class="w-[45%] h-40 rounded-2xl bg-white">
+            <div class="w-full h-16 flex items-center bg-blue-100 rounded-t-xl">
+                <h1 class="w-1/2 px-4 text-xl font-semibold text-gray-500"><i class="fas fa-icons"></i> Categorys</h1>
+            </div>
+        </div>
+        <div class="w-[45%] rounded-2xl bg-white">
+            <div class="w-full h-16 flex items-center bg-blue-100 rounded-t-xl">
+                <h1 class="w-1/2 px-4 text-xl font-semibold text-gray-500"><i class="fas fa-circle-plus"></i> ADD Categorys</h1>
+            </div>
+            <form method="POST" class="w-full max-h-96 flex flex-col p-4 gap-2 bg-white rounded-b-xl overflow-y-auto">
+                <div class="relative">
+                    <i class="fas fa-heading absolute left-3 top-3 text-slate-400 text-sm"></i>
+                    <input name="title" value="<?php if (isset($_SESSION['title'])) { echo $_SESSION['title']; unset($_SESSION['title']); } ?>" type="text" placeholder="Title" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                </div>
+                <div class="relative">
+                    <i class="fas fa-font-awesome absolute left-3 top-3 text-slate-400 text-sm"></i>
+                    <input name="icon" value="<?php if (isset($_SESSION['icon'])) { echo $_SESSION['icon']; unset($_SESSION['icon']); } ?>" type="text" placeholder="Font-awesome" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                </div>
+                <div class="relative">
+                    <i class="fas fa-palette absolute left-3 top-3 text-slate-400 text-sm"></i>
+                    <input name="color" value="<?php if (isset($_SESSION['color'])) { echo $_SESSION['color']; unset($_SESSION['color']); } else { echo "#ffffff"; } ?>" type="color" id="colorInput" class="absolute inset-0 opacity-0 cursor-pointer">
+                    <div id="colorPreview" class="w-full h-[38px] pl-10 pr-3 rounded-md border border-slate-200 flex items-center shadow-sm cursor-pointer"></div>
+                </div>
+                <button type="submit" name="newcategory" class="signin-btn w-full bg-indigo-600 text-white py-2 rounded-md font-medium hover:bg-indigo-700 transition">
+                    Add Category
+                </button>
+            </form>
+        </div>
     </div>
 </section>
