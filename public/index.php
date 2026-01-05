@@ -19,4 +19,7 @@ $database->connect();
 $router = new Router();
 $router->get('/', 'HomeController@index');
 $router->post('/', 'HomeController@newuser');
+$router->get('/users', 'UsersController@index');
+$router->post('/users', 'UsersController@request');
+$router->get('/categories', 'CategoriesController@index');
 $router->dispatch();

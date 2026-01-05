@@ -11,7 +11,7 @@
 </head>
 
 <body class="w-screen h-screen flex overflow-hidden">
-    <div id="toast" class="flex gap-2 bg-green-600 text-white px-4 py-3 rounded-lg absolute top-10 -left-80">
+    <div id="toast" class="flex gap-2 z-[9999] bg-green-600 text-white px-4 py-3 rounded-lg absolute top-10 -left-80">
         <span class="font-semibold">Success:</span>
         <h1 id="success"><?php
             if (isset($_SESSION['successmsg'])) {
@@ -20,7 +20,7 @@
             }
             ?></h1>
     </div>
-    <div id="toast0" class="flex gap-2 bg-red-600 text-white px-4 py-3 rounded-lg absolute top-10 -left-80">
+    <div id="toast0" class="flex gap-2 z-[9999] bg-red-600 text-white px-4 py-3 rounded-lg absolute top-10 -left-80">
         <span class="font-semibold">Error:</span>
         <h1 id="error"><?php
             if (isset($_SESSION['errormsg'])) {

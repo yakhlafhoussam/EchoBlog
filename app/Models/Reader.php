@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Config\Database;
-use PDO;
 
 class Reader extends User
 {

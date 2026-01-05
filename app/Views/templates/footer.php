@@ -132,7 +132,6 @@
                         <p class="text-sm font-medium text-slate-800 truncate">' . $_SESSION['first'] . ' ' . $_SESSION['last'] . '</p>
                         <p class="text-xs text-slate-500 truncate">'. $_SESSION['email'] .'</p>
                     </div>
-                    
                 </div>
                 <div class="space-y-2">';
                 if (isset($_SESSION['role']) && $_SESSION['role'] == 'reader') {
