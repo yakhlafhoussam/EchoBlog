@@ -9,6 +9,8 @@ class CategoriesController extends Controller
 {
     public function index()
     {
+        $admin = new Admin();
+        $admin->getAllCategory();
         $this->view('categories');
     }
     public function category() {
@@ -17,6 +19,9 @@ class CategoriesController extends Controller
             $icon = $_SESSION['icon'] = $_POST['icon'];
             $color = $_SESSION['color'] = $_POST['color'];
             $this->addNewCategory($title, $icon, $color);
+        } elseif (isset($_POST['delete'])) {
+            $categoryId = $_POST['categorydel'];
+            $this->delCategory($categoryId);
         }
     }
     public function addNewCategory($title, $icon, $color) {
@@ -31,5 +36,9 @@ class CategoriesController extends Controller
             unset($_SESSION['icon']);
             unset($_SESSION['color']);
         }
+    }
+    public function delCategory($id) {
+        $admin = new Admin();
+        $admin->delCategory($id);
     }
 }

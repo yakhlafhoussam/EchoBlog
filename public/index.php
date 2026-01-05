@@ -23,4 +23,6 @@ $router->get('/users', 'UsersController@index');
 $router->post('/users', 'UsersController@request');
 $router->get('/categories', 'CategoriesController@index');
 $router->post('/categories', 'CategoriesController@category');
+$router->get('/article', 'ArticleController@index');
+$router->post('/article', 'ArticleController@article');
 $router->dispatch();

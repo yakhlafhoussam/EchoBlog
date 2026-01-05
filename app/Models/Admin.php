@@ -40,4 +40,24 @@ class Admin extends User
         $_SESSION['successmsg'] = 'The category has added successfully!';
         header('location: /categories');
     }
+    public function getAllCategory() {
+        $database = new Database();
+        $conn = $database->connect();
+        $stmt = $conn->prepare("SELECT * FROM categories");
+        $stmt->execute();
+        $category = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        $_SESSION['category'] = $category;
+        $stmt = $conn->prepare("SELECT * FROM articles");
+        $stmt->execute();
+        $category = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        $_SESSION['article'] = $category;
+    }
+    public function delCategory($id) {
+        $database = new Database();
+        $conn = $database->connect();
+        $stmt = $conn->prepare("DELETE FROM categories WHERE id = ?");
+        $stmt->execute([$id]);
+        $_SESSION['successmsg'] = 'The category has deleted successfully!';
+        header('location: /categories');
+    }
 }
