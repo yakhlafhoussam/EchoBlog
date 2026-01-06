@@ -126,11 +126,11 @@
             <div class="space-y-4">
                 <div class="flex items-center gap-3 px-3">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-600 text-xl text-white font-bold">'
-                        . ucfirst(substr($_SESSION['first'], 0 ,1)) . ucfirst(substr($_SESSION['last'], 0, 1)) .
+                        . ucfirst(substr($first, 0 ,1)) . ucfirst(substr($last, 0, 1)) .
                     '</div>
                     <div>
-                        <p class="text-sm font-medium text-slate-800 truncate">' . $_SESSION['first'] . ' ' . $_SESSION['last'] . '</p>
-                        <p class="text-xs text-slate-500 truncate">'. $_SESSION['email'] .'</p>
+                        <p class="text-sm font-medium text-slate-800 truncate">' . $first . ' ' . $last . '</p>
+                        <p class="text-xs text-slate-500 truncate">'. $email .'</p>
                     </div>
                 </div>
                 <div class="space-y-2">';

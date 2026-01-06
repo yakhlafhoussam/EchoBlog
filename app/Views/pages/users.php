@@ -2,12 +2,12 @@
     <div class="bg-white rounded-xl px-5 py-2 mb-4 flex items-center gap-2">
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-600 text-xl text-white font-bold relative">
             <?php
-                echo ucfirst(substr($_SESSION['first'], 0 ,1)) . ucfirst(substr($_SESSION['last'], 0, 1))
+                echo ucfirst(substr($first, 0 ,1)) . ucfirst(substr($last, 0, 1))
             ?>
             <div class="w-3 h-3 bg-green-500 absolute right-0 bottom-0 rounded-full"></div>
         </div>
         <h1 class="text-black text-2xl font-bold">
-            <?php echo $_SESSION['first'] . ' ' . $_SESSION['last'] ?>
+            <?php echo $first . ' ' . $last ?>
         </h1>
     </div>
     <div class="space-y-2 mb-8">
@@ -30,12 +30,12 @@
                 <div class="flex items-center gap-3 px-3">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-600 text-xl text-white font-bold relative">
                         <?php
-                            echo ucfirst(substr($_SESSION['first'], 0 ,1)) . ucfirst(substr($_SESSION['last'], 0, 1))
+                            echo ucfirst(substr($first, 0 ,1)) . ucfirst(substr($last, 0, 1))
                         ?>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-slate-800 truncate"><?php echo $_SESSION['first'] . ' ' . $_SESSION['last'] ?> (YOU)</p>
-                        <p class="text-xs text-slate-500 truncate"><?php echo $_SESSION['email'] ?></p>
+                        <p class="text-sm font-medium text-slate-800 truncate"><?php echo $first . ' ' . $last ?> (YOU)</p>
+                        <p class="text-xs text-slate-500 truncate"><?php echo $email ?></p>
                     </div>
                 </div>
             </div>

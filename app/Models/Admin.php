@@ -16,6 +16,16 @@ class Admin extends User
         $user = $stmt->fetchALL(PDO::FETCH_ASSOC);
         $_SESSION['users'] = $user;
     }
+    public function getAllRequest() {
+        $database = new Database();
+        $conn = $database->connect();
+        $stmt = $conn->prepare("SELECT * FROM users WHERE situation = 'yes'");
+        $stmt->execute();
+        $user = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        if (count($user) > 0) {
+            $_SESSION['request'] = count($user);
+        }
+    }
     public function acceptUsers($id) {
         $database = new Database();
         $conn = $database->connect();

@@ -3,12 +3,12 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Models\User;
 use App\Models\Reader;
+use App\Models\Author;
+use App\Models\Admin;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
         if (!isset($_SESSION['reload'])) {
@@ -16,7 +16,33 @@ class HomeController extends Controller
         } else {
             unset($_SESSION['reload']);
         }
-        $this->view('home');
+        if (isset($_SESSION['id'])) {
+            if ($_SESSION['role'] == 'reader') {
+                $reader = new Reader();
+                $firstInfo = $reader->first;
+                $lastInfo = $reader->last;
+                $emailInfo = $reader->email;
+            } elseif ($_SESSION['role'] == 'author') {
+                $author = new Author();
+                $firstInfo = $author->first;
+                $lastInfo = $author->last;
+                $emailInfo = $author->email;
+            } elseif ($_SESSION['role'] == 'admin') {
+                $admin = new Admin();
+                $firstInfo = $admin->first;
+                $lastInfo = $admin->last;
+                $emailInfo = $admin->email;
+                $admin->getAllRequest();
+            }
+            $data = [
+                'first' => $firstInfo,
+                'last' => $lastInfo,
+                'email' => $emailInfo,
+            ];
+            $this->view('home', $data);
+        } else {
+            $this->view('home');
+        }
     }
 
     public function newuser()
@@ -33,9 +59,10 @@ class HomeController extends Controller
             $password = $_POST['password'];
             $this->signin($email, $password);
         } elseif (isset($_POST['logout'])) {
-            $outUser = new User();
-            $outUser->logout();
+            session_unset();
+            session_destroy();
             header('location: /');
+            exit();
         } elseif (isset($_POST['request'])) {
             $readerRequest = new Reader();
             $readerRequest->request();
@@ -53,24 +80,9 @@ class HomeController extends Controller
 
     public function signup($first, $last, $email, $password, $passwordCheck)
     {
-        if (empty($first) || empty($last) || empty($email) || empty($password) || empty($passwordCheck)) {
-            $errormsg = 'Please fill in all fields';
-            $_SESSION['errormsg'] = $errormsg;
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errormsg = 'Invalid email';
-            $_SESSION['errormsg'] = $errormsg;
-        } elseif ($password != $passwordCheck) {
-            $errormsg = 'Please check your password !';
-            $_SESSION['errormsg'] = $errormsg;
-        } elseif (!isset($_POST['policy'])) {
-            $errormsg = 'You need to accept the Terms & Conditions and Privacy Policy !';
-            $_SESSION['errormsg'] = $errormsg;
-        } else {
-            $newUser = new User();
-            $signup = $newUser->signup($first, $last, $email, $password);
-            if ($signup) {
-                $_SESSION['newuser'] = 'no';
-            }
+        $newUser = AuthController::signup($first, $last, $email, $password, $passwordCheck);
+        if ($newUser) {
+            $_SESSION['newuser'] = 'no';
         }
         $_SESSION['reload'] = 'on';
         header('location: /');
@@ -78,16 +90,7 @@ class HomeController extends Controller
 
     public function signin($email, $password)
     {
-        if (empty($email) || empty($password)) {
-            $errormsg = 'Please fill in all fields';
-            $_SESSION['errormsg'] = $errormsg;
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errormsg = 'Invalid email';
-            $_SESSION['errormsg'] = $errormsg;
-        } else {
-            $oldUser = new User();
-            $signin = $oldUser->signin($email, $password);
-        }
+        $oldUser = AuthController::signin($email, $password);
         $_SESSION['reload'] = 'on';
         header('location: /');
     }

@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Core\Controller;
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Article;
+
+class ArticleController extends Controller
+{
+    public function index()
+    {
+        if (isset($_SESSION['id'])) {
+            if ($_SESSION['role'] == 'reader') {
+                $this->view('404');
+            } elseif ($_SESSION['role'] == 'admin') {
+                $this->view('404');
+            } elseif ($_SESSION['role'] == 'author') {
+                $author = new Author();
+                $firstInfo = $author->first;
+                $lastInfo = $author->last;
+                $emailInfo = $author->email;
+                $data = [
+                    'first' => $firstInfo,
+                    'last' => $lastInfo,
+                    'email' => $emailInfo,
+                ];
+                $author = new Category();
+                $author->getAllCategory();
+                $author = new Article();
+                $author->getAllArticle();
+                $this->view('article', $data);
+            }
+        } else {
+            $this->view('404');
+        }
+    }
+}
