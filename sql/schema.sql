@@ -18,7 +18,9 @@ CREATE TABLE articles(
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     author_id int NOT NULL,
-    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
+    category_id int NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
 CREATE TABLE categories(

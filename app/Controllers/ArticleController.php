@@ -28,12 +28,32 @@ class ArticleController extends Controller
                 ];
                 $author = new Category();
                 $author->getAllCategory();
+                $author->getMyCategory();
                 $author = new Article();
-                $author->getAllArticle();
+                $author->getMyArticle();
                 $this->view('article', $data);
             }
         } else {
             $this->view('404');
         }
+    }
+    public function article()
+    {
+        if (isset($_POST['logout'])) {
+            session_unset();
+            session_destroy();
+            header('location: /');
+            exit();
+        } elseif (isset($_POST['newcategory'])) {
+            $title = $_POST['title'];
+            $content = $_POST['content'];
+            $cat = $_POST['categoryone'];
+            $this->addNewArticle($title, $content, $cat);
+        }
+    }
+    public function addNewArticle($title, $content, $cat)
+    {
+        $author = new Author();
+        $author->addArticle($title, $content, $cat);
     }
 }

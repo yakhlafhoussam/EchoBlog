@@ -15,10 +15,12 @@ class Database
     public function connect()
     {
         try {
+            $_SESSION['systeme'] = 'up';
             $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         } catch (PDOException $e) {
+            $_SESSION['systeme'] = 'down';
             $controllerClass = "App\\Controllers\\WrongController";
             $controller = new $controllerClass();
             $controller->index();
