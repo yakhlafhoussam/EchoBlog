@@ -66,11 +66,13 @@
             <form method="POST" class="w-full flex flex-col p-4 gap-2 bg-white rounded-b-xl overflow-y-auto">
                 <div class="relative">
                     <i class="fas fa-heading absolute left-3 top-3 text-slate-400 text-sm"></i>
-                    <input id="title" name="title" value="<?php if (isset($_SESSION['title'])) { echo $_SESSION['title']; unset($_SESSION['title']); } ?>" type="text" placeholder="Title" class="w-full pl-10 pr-3 py-2 text-sm font-bold border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <input id="title" name="title" maxlength="60" value="<?php if (isset($_SESSION['title'])) { echo $_SESSION['title']; unset($_SESSION['title']); } ?>" type="text" placeholder="Title" class="w-full pl-10 pr-3 py-2 text-sm font-bold border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <p id="maxt" class="text-gray-400 font-bold absolute right-2 bottom-[6px]">60</p>
                 </div>
                 <div class="relative">
                     <i class="fas fa-arrows-to-circle absolute left-3 top-3 text-slate-400 text-sm"></i>
-                    <textarea id="content" name="content" value="<?php if (isset($_SESSION['content'])) { echo $_SESSION['content']; unset($_SESSION['content']); } ?>" type="text" placeholder="Content" class="w-full pl-10 pr-3 py-2 text-lg border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent h-14 resize-none"></textarea>
+                    <textarea id="content" name="content" maxlength="310" value="<?php if (isset($_SESSION['content'])) { echo $_SESSION['content']; unset($_SESSION['content']); } ?>" type="text" placeholder="Content" class="w-full pl-10 pr-3 py-2 text-lg border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent h-14 resize-none"></textarea>
+                    <p id="maxc" class="text-gray-400 font-bold absolute right-2 bottom-[6px]">310</p>
                 </div>
                 <input id="categoryone" name="categoryone" class="w-0 h-0 hidden" type="text" value="">
                 <div id="categorySelect" class="w-full h-10 border border-solid border-slate-200 rounded-md flex items-center gap-2 px-4"><h1 id="empty" class="w-full h-full flex justify-center items-center text-2xl text-gray-400 font-bold">You will see the added category here</h1></div>

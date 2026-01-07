@@ -6,11 +6,14 @@ use App\Core\Controller;
 use App\Models\Reader;
 use App\Models\Author;
 use App\Models\Admin;
+use App\Models\Article;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $blog = new Article();
+        $blog->getAllBlog();
         if (!isset($_SESSION['reload'])) {
             $_SESSION['newuser'] = 'no';
         } else {

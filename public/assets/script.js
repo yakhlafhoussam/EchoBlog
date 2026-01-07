@@ -52,13 +52,30 @@ if (page == "categories") {
     input.addEventListener('input', () => {
         preview.style.background = input.value;
     });
+} else if (page == "home") {
+    const like = document.getElementById('likes');
+    const comment = document.getElementById('comments');
 } else if (page == "article") {
+    let maxtitle = 60;
+    let maxcontent = 310;
     let select = 0;
     let category = document.querySelectorAll(".category");
     const submit = document.querySelector("#submit");
     const title = document.querySelector("#title");
     const content = document.querySelector("#content");
+    const maxt = document.querySelector("#maxt");
+    const maxc = document.querySelector("#maxc");
     category = Array.from(category);
+    title.oninput = function () {
+        maxtitle = 60;
+        maxtitle -= title.value.length;
+        maxt.innerText = maxtitle;
+    }
+    content.oninput = function () {
+        maxcontent = 310;
+        maxcontent -= content.value.length;
+        maxc.innerText = maxcontent;
+    }
     category.forEach(cat => {
         cat.onclick = function () {
             if (document.getElementById(this.id).dataset.name == 'no') {

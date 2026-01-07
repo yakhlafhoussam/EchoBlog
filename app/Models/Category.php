@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Config\Database;
 use PDO;
 
-class Category extends User
+class Category
 {
     public function getAllCategory() {
         $database = new Database();
