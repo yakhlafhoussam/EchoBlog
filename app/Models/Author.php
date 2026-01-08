@@ -15,4 +15,12 @@ class Author extends User
         $_SESSION['successmsg'] = 'The article has added successfully!';
         header('location: /article');
     }
+    public function delArticle($id) {
+        $database = new Database();
+        $conn = $database->connect();
+        $stmt = $conn->prepare("DELETE FROM articles WHERE id = ?");
+        $stmt->execute([$id]);
+        $_SESSION['successmsg'] = 'The article has deleted successfully!';
+        header('location: /article');
+    }
 }

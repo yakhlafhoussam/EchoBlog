@@ -44,9 +44,19 @@ class ArticleController extends Controller
         $cat = $_POST['categoryone'];
         $this->addNewArticle($title, $content, $cat);
     }
+    public function delarticle()
+    {
+        $id = $_POST['articledell'];
+        $this->deleteArticle($id);
+    }
     public function addNewArticle($title, $content, $cat)
     {
         $author = new Author();
         $author->addArticle($title, $content, $cat);
+    }
+    public function deleteArticle($id)
+    {
+        $author = new Author();
+        $author->delArticle($id);
     }
 }

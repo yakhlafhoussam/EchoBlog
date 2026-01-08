@@ -1,8 +1,8 @@
 const errormsg = document.querySelector('#error');
 const successmsg = document.querySelector('#success');
 const page = document.querySelector('#page').dataset.name;
-/*
-function addLike(arid, reid) {
+
+/* function addLike(arid, reid) {
     const form = new FormData();
     form.append('article_id', arid);
     form.append('reader_id', reid);
@@ -16,8 +16,8 @@ function addLike(arid, reid) {
     }).catch(function (error) {
         console.log(error);
     })
-}
-*/
+} */
+
 function showmsg() {
     if (errormsg.innerHTML != '') {
         gsap.to(document.querySelector("#toast0"), {

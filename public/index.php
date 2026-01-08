@@ -31,5 +31,6 @@ $router->post('/refuse', 'UsersController@refuse');
 $router->get('/article', 'ArticleController@index');
 $router->post('/article', 'ArticleController@article');
 $router->post('/addarticle', 'ArticleController@addarticle');
+$router->post('/delarticle', 'ArticleController@delarticle');
 
 $router->dispatch();
