@@ -37,19 +37,12 @@ class ArticleController extends Controller
             $this->view('404');
         }
     }
-    public function article()
+    public function addarticle()
     {
-        if (isset($_POST['logout'])) {
-            session_unset();
-            session_destroy();
-            header('location: /');
-            exit();
-        } elseif (isset($_POST['newcategory'])) {
-            $title = $_POST['title'];
-            $content = $_POST['content'];
-            $cat = $_POST['categoryone'];
-            $this->addNewArticle($title, $content, $cat);
-        }
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $cat = $_POST['categoryone'];
+        $this->addNewArticle($title, $content, $cat);
     }
     public function addNewArticle($title, $content, $cat)
     {

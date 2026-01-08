@@ -25,11 +25,15 @@
         </div>
         <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
             <h1 class="text-2xl text-black font-semibold"><i class="fas fa-star"></i> Most category used</h1>
-            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['category']) ?> Article</h1>
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo '<span class="role-badge inline-flex items-center px-2 py-0.5 rounded-full text-lg font-medium bg-opacity-10 bg-['. $_SESSION['mostcat']['color'] .'] text-[' . $_SESSION['mostcat']['color'] . ']">
+                                <i class="fas fa-' . $_SESSION['mostcat']['icon'] . ' mr-1 text-lg"></i> ' . ucfirst($_SESSION['mostcat']['name']) . '
+                            </span>' ?></h1>
         </div>
         <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
             <h1 class="text-2xl text-black font-semibold"><i class="fas fa-star-half"></i> Least category used</h1>
-            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo count($_SESSION['category']) ?> Article</h1>
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo '<span class="role-badge inline-flex items-center px-2 py-0.5 rounded-full text-lg font-medium bg-opacity-10 bg-['. $_SESSION['leastcat']['color'] .'] text-[' . $_SESSION['leastcat']['color'] . ']">
+                                <i class="fas fa-' . $_SESSION['leastcat']['icon'] . ' mr-1 text-lg"></i> ' . ucfirst($_SESSION['leastcat']['name']) . '
+                            </span>' ?></h1>
         </div>
     </div>
     <div class="w-full flex justify-between">
@@ -52,9 +56,9 @@
                                 <i class="fas fa-' . $_SESSION['category'][$i]['icon'] . ' mr-1 text-lg"></i> ' . ucfirst($_SESSION['category'][$i]['name']) . '
                             </span>
                         </div>
-                        <form method="POST">
-                            <input class="w-0 h-0 hidden" type="text" name="categorydel" value="' . $_SESSION['category'][$i]['id'] . '">
-                            <button type="submit" name="delete" class="fas fa-trash mr-1 text-lg text-red-500"></button>
+                        <form method="POST" action="delcategory">
+                            <input type="hidden" name="categorydel" value="' . $_SESSION['category'][$i]['id'] . '">
+                            <button type="submit" class="fas fa-trash mr-1 text-lg text-red-500"></button>
                         </form>
                     </div>
                     ';
@@ -67,7 +71,7 @@
             <div class="w-full h-16 flex items-center bg-blue-100 rounded-t-xl">
                 <h1 class="w-1/2 px-4 text-xl font-semibold text-gray-500"><i class="fas fa-circle-plus"></i> ADD Categorys</h1>
             </div>
-            <form method="POST" class="w-full flex flex-col p-4 gap-2 bg-white rounded-b-xl overflow-y-auto">
+            <form method="post" action="addcategory" class="w-full flex flex-col p-4 gap-2 bg-white rounded-b-xl overflow-y-auto">
                 <div class="relative">
                     <i class="fas fa-heading absolute left-3 top-3 text-slate-400 text-sm"></i>
                     <input name="title" value="<?php if (isset($_SESSION['title'])) { echo $_SESSION['title']; unset($_SESSION['title']); } ?>" type="text" placeholder="Title" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">

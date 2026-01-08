@@ -105,7 +105,7 @@
             if ($_SESSION['users'][$i]['situation'] == 'yes') {
                 echo '
                 <div class="w-1/4 px-4 py-2 flex gap-2">
-                    <form method="POST">
+                    <form method="POST" action="accept">
                         <input class="h-0 w-0 hidden" type="text" name="accepted" value="'. $_SESSION['users'][$i]['id'] .'">
                         <button type="submit" name="accept" class="px-1">
                             <span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-medium bg-green-500 text-white">
@@ -113,7 +113,7 @@
                             </span>
                         </button>
                     </form>
-                    <form method="POST">
+                    <form method="POST" action="refuse">
                         <input class="h-0 w-0 hidden" type="text" name="refused" value="'. $_SESSION['users'][$i]['id'] .'">
                         <button type="submit" name="refuse" class="px-1">
                             <span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-medium bg-red-500 text-white">

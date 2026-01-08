@@ -8,7 +8,8 @@ use PDO;
 
 class Admin extends User
 {
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         $database = new Database();
         $conn = $database->connect();
         $stmt = $conn->prepare("SELECT * FROM users");
@@ -16,7 +17,8 @@ class Admin extends User
         $user = $stmt->fetchALL(PDO::FETCH_ASSOC);
         $_SESSION['users'] = $user;
     }
-    public function getAllRequest() {
+    public function getAllRequest()
+    {
         $database = new Database();
         $conn = $database->connect();
         $stmt = $conn->prepare("SELECT * FROM users WHERE situation = 'yes'");
@@ -26,7 +28,8 @@ class Admin extends User
             $_SESSION['request'] = count($user);
         }
     }
-    public function acceptUsers($id) {
+    public function acceptUsers($id)
+    {
         $database = new Database();
         $conn = $database->connect();
         $stmt = $conn->prepare("UPDATE users SET situation = 'no' WHERE id = ?");
@@ -35,14 +38,16 @@ class Admin extends User
         $stmt->execute([$id]);
         $_SESSION['successmsg'] = 'The request has successfully accepted!';
     }
-    public function refuse($id) {
+    public function refuse($id)
+    {
         $database = new Database();
         $conn = $database->connect();
         $stmt = $conn->prepare("UPDATE users SET situation = 'no' WHERE id = ?");
         $stmt->execute([$id]);
         $_SESSION['successmsg'] = 'The request has successfully refused!';
     }
-    public function addCategory($title, $icon, $color) {
+    public function addCategory($title, $icon, $color)
+    {
         $database = new Database();
         $conn = $database->connect();
         $stmt = $conn->prepare("INSERT INTO categories (name, icon, color) VALUES (?, ?, ?)");
@@ -50,7 +55,8 @@ class Admin extends User
         $_SESSION['successmsg'] = 'The category has added successfully!';
         header('location: /categories');
     }
-    public function getAllCategory() {
+    public function getAllCategory()
+    {
         $database = new Database();
         $conn = $database->connect();
         $stmt = $conn->prepare("SELECT * FROM categories");
@@ -62,12 +68,17 @@ class Admin extends User
         $category = $stmt->fetchALL(PDO::FETCH_ASSOC);
         $_SESSION['article'] = $category;
     }
-    public function delCategory($id) {
-        $database = new Database();
-        $conn = $database->connect();
-        $stmt = $conn->prepare("DELETE FROM categories WHERE id = ?");
-        $stmt->execute([$id]);
-        $_SESSION['successmsg'] = 'The category has deleted successfully!';
+    public function delCategory($id)
+    {
+        try {
+            $database = new Database();
+            $conn = $database->connect();
+            $stmt = $conn->prepare("DELETE FROM categories WHERE id = ?");
+            $stmt->execute([$id]);
+            $_SESSION['successmsg'] = 'The category has deleted successfully!';
+        } catch (\Throwable $th) {
+            $_SESSION['errormsg'] = 'This category is used in some article!';
+        }
         header('location: /categories');
     }
 }

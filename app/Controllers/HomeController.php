@@ -50,23 +50,7 @@ class HomeController extends Controller
 
     public function newuser()
     {
-        if (isset($_POST['signup'])) {
-            $first = $_SESSION['first'] = $_POST['first'];
-            $last = $_SESSION['last'] = $_POST['last'];
-            $email = $_SESSION['email'] = $_POST['email'];
-            $password = $_SESSION['password'] = $_POST['password'];
-            $passwordCheck = $_SESSION['passwordCheck'] = $_POST['passwordCheck'];
-            $this->signup($first, $last, $email, $password, $passwordCheck);
-        } elseif (isset($_POST['signin'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $this->signin($email, $password);
-        } elseif (isset($_POST['logout'])) {
-            session_unset();
-            session_destroy();
-            header('location: /');
-            exit();
-        } elseif (isset($_POST['request'])) {
+        if (isset($_POST['request'])) {
             $readerRequest = new Reader();
             $readerRequest->request();
             header('location: /');
@@ -79,22 +63,5 @@ class HomeController extends Controller
             $_SESSION['reload'] = 'on';
             header('location: /');
         }
-    }
-
-    public function signup($first, $last, $email, $password, $passwordCheck)
-    {
-        $newUser = AuthController::signup($first, $last, $email, $password, $passwordCheck);
-        if ($newUser) {
-            $_SESSION['newuser'] = 'no';
-        }
-        $_SESSION['reload'] = 'on';
-        header('location: /');
-    }
-
-    public function signin($email, $password)
-    {
-        $oldUser = AuthController::signin($email, $password);
-        $_SESSION['reload'] = 'on';
-        header('location: /');
     }
 }

@@ -44,7 +44,7 @@
             if (isset($_SESSION['newuser']) && $_SESSION['newuser'] != 'yes') {
                 echo '
                     <div class="auth-forms">
-                <form method="post" class="signin-form space-y-4">
+                <form method="post" class="signin-form space-y-4" action="login">
                     <div class="space-y-3">
                         <div class="relative">
                             <i class="fas fa-envelope absolute left-3 top-3 text-slate-400 text-sm"></i>
@@ -78,52 +78,27 @@
                     ';
             } else {
                 echo '
-                    <form method="post" class="signup-form space-y-4">
+                    <form method="post" class="space-y-4" action="signup">
                     <div class="space-y-3">
                         <div class="relative">
                             <i class="fas fa-user absolute left-3 top-3 text-slate-400 text-sm"></i>
-                            <input name="first" type="text" value="';
-                if (isset($_SESSION['first'])) {
-                    echo $_SESSION['first'];
-                    unset($_SESSION['first']);
-                }
-                echo '" placeholder="First Name" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <input name="first" type="text" value="' . ($_SESSION['first'] ?? "") . '" placeholder="First Name" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                         </div>
                         <div class="relative">
                             <i class="fas fa-user absolute left-3 top-3 text-slate-400 text-sm"></i>
-                            <input name="last" type="text" value="';
-                if (isset($_SESSION['last'])) {
-                    echo $_SESSION['last'];
-                    unset($_SESSION['last']);
-                }
-                echo '" placeholder="Last Name" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <input name="last" type="text" value="' . ($_SESSION['last'] ?? "") . '" placeholder="Last Name" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                         </div>
                         <div class="relative">
                             <i class="fas fa-envelope absolute left-3 top-3 text-slate-400 text-sm"></i>
-                            <input name="email" type="email" value="';
-                if (isset($_SESSION['email'])) {
-                    echo $_SESSION['email'];
-                    unset($_SESSION['email']);
-                }
-                echo '" placeholder="Email" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <input name="email" type="email" value="' . ($_SESSION['email'] ?? "") . '" placeholder="Email" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                         </div>
                         <div class="relative">
                             <i class="fas fa-lock absolute left-3 top-3 text-slate-400 text-sm"></i>
-                            <input name="password" type="password" value="';
-                if (isset($_SESSION['password'])) {
-                    echo $_SESSION['password'];
-                    unset($_SESSION['password']);
-                }
-                echo '" placeholder="Password" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <input name="password" type="password" value="' . ($_SESSION['password'] ?? "") . '" placeholder="Password" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                         </div>
                         <div class="relative">
                             <i class="fas fa-lock absolute left-3 top-3 text-slate-400 text-sm"></i>
-                            <input name="passwordCheck" type="password" value="';
-                if (isset($_SESSION['passwordCheck'])) {
-                    echo $_SESSION['passwordCheck'];
-                    unset($_SESSION['passwordCheck']);
-                }
-                echo '" placeholder="Confirm Password" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <input name="passwordCheck" type="password" value="' . ($_SESSION['passwordCheck'] ?? "") . '" placeholder="Confirm Password" class="w-full pl-10 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                         </div>
                         
                         <label class="flex items-start space-x-2 cursor-pointer px-1">
@@ -137,14 +112,12 @@
                         </button>
                     </div>
                 </from>
-                <form method="post">
                     <div class="text-center">
                         <p class="text-xs text-slate-500">Already have an account?</p>
-                        <button type="submit" name="tosignin" class="toggle-to-signin text-xs text-indigo-600 font-medium hover:text-indigo-800 transition mt-1">
+                        <a href="/" class="toggle-to-signin text-xs text-indigo-600 font-medium hover:text-indigo-800 transition mt-1">
                             Sign In
-                        </button>
+                        </a>
                     </div>
-                </form>
                     ';
             }
         } else {
@@ -186,7 +159,7 @@
             }
             echo '</div>
             </div>
-            <form method="post" class="p-4 mb-10 border-t border-slate-100 space-y-3">
+            <form method="post" class="p-4 mb-10 border-t border-slate-100 space-y-3" action="logout">
                 <button type="submit" name="logout" class="signout-btn w-full flex items-center justify-center gap-2 px-3 py-2 bg-red-50 text-red-600 rounded-md hover:bg-red-100 transition font-medium">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Sign Out</span>

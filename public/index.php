@@ -18,10 +18,18 @@ $database->connect();
 $router = new Router();
 $router->get('/', 'HomeController@index');
 $router->post('/', 'HomeController@newuser');
+$router->post('/signup', 'AuthController@signup');
+$router->post('/login', 'AuthController@login'); // edit the signin to login in form action
+$router->post('/logout', 'AuthController@logout');
 $router->get('/users', 'UsersController@index');
 $router->post('/users', 'UsersController@request');
 $router->get('/categories', 'CategoriesController@index');
-$router->post('/categories', 'CategoriesController@category');
+$router->post('/addcategory', 'CategoriesController@addCategory');
+$router->post('/delcategory', 'CategoriesController@delCategory');
+$router->post('/accept', 'UsersController@accept');
+$router->post('/refuse', 'UsersController@refuse');
 $router->get('/article', 'ArticleController@index');
 $router->post('/article', 'ArticleController@article');
+$router->post('/addarticle', 'ArticleController@addarticle');
+
 $router->dispatch();

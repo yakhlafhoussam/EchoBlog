@@ -25,13 +25,13 @@
         </div>
         <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
             <h1 class="text-2xl text-black font-semibold"><i class="fas fa-star"></i> Most category used</h1>
-            <h1 class="text-2xl text-gray-500 font-semibold"><?php echo '
+            <h1 class="text-2xl text-gray-500 font-semibold"><?php if (isset($_SESSION['authorcat'])) { echo '
                                                                             <div class="px-1 cursor-pointer">
                                                                                 <span class="role-badge inline-flex items-center px-2 py-0.5 rounded-full text-lg font-medium bg-opacity-10 bg-['. $_SESSION['authorcat']['color'] .'] text-[' . $_SESSION['authorcat']['color'] . ']">
                                                                                     <i class="fas fa-' . $_SESSION['authorcat']['icon'] . ' mr-1 text-lg"></i> ' . ucfirst($_SESSION['authorcat']['name']) . '
                                                                                 </span>
                                                                             </div>
-                                                                            ' ?></h1>
+                                                                            '; }?></h1>
         </div>
         <div class="flex flex-col p-5 mb-5 gap-2 bg-slate-200 rounded-xl w-1/4">
             <h1 class="text-2xl text-black font-semibold"><i class="fas fa-heart"></i> All like</h1>
@@ -63,7 +63,7 @@
             <div class="w-full h-16 flex items-center bg-blue-100 rounded-t-xl">
                 <h1 class="w-1/2 px-4 text-xl font-semibold text-gray-500"><i class="fas fa-circle-plus"></i> Add Article</h1>
             </div>
-            <form method="POST" class="w-full flex flex-col p-4 gap-2 bg-white rounded-b-xl overflow-y-auto">
+            <form method="POST" action="addarticle" class="w-full flex flex-col p-4 gap-2 bg-white rounded-b-xl overflow-y-auto">
                 <div class="relative">
                     <i class="fas fa-heading absolute left-3 top-3 text-slate-400 text-sm"></i>
                     <input id="title" name="title" maxlength="60" value="<?php if (isset($_SESSION['title'])) { echo $_SESSION['title']; unset($_SESSION['title']); } ?>" type="text" placeholder="Title" class="w-full pl-10 pr-3 py-2 text-sm font-bold border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
