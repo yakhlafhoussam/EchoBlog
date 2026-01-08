@@ -43,8 +43,8 @@
             if (isset($_SESSION['id'])) {
                 echo '
             <div class="w-full h-[50px] border-blue-100 border-t border-solid rounded-b-xl flex items-center gap-x-10 px-5 relative">
-                <i id="likes" class="cursor-pointer fas fa-heart text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['likes_count'] . '</span></i>
-                <i id="comments" class="cursor-pointer fas fa-comment text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['comments_count'] . '</span></i>
+                <i id="like' . $_SESSION['blog'][$h]['id'] . '" data-name="no" class="likes cursor-pointer fas fa-heart text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['likes_count'] . '</span></i>
+                <i id="two" class="comments cursor-pointer fas fa-comment text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['comments_count'] . '</span></i>
                 <p class="text-gray-400 text-sm font-medium absolute right-5">' . $_SESSION['blog'][$h]['created_at'] . '</p>
             </div>
             </div>';
