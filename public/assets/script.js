@@ -2,22 +2,6 @@ const errormsg = document.querySelector('#error');
 const successmsg = document.querySelector('#success');
 const page = document.querySelector('#page').dataset.name;
 
-/* function addLike(arid, reid) {
-    const form = new FormData();
-    form.append('article_id', arid);
-    form.append('reader_id', reid);
-    fetch('/../../app/Controllers/LikeController.php', {
-        method: 'POST',
-        body: form
-    }).then(function (res) {
-        return res.text();
-    }).then(function (data) {
-        console.log(data);
-    }).catch(function (error) {
-        console.log(error);
-    })
-} */
-
 function showmsg() {
     if (errormsg.innerHTML != '') {
         gsap.to(document.querySelector("#toast0"), {
@@ -68,23 +52,6 @@ if (page == "categories") {
     input.addEventListener('input', () => {
         preview.style.background = input.value;
     });
-} else if (page == "home") {
-    const like = document.querySelectorAll('.likes');
-    const comment = document.getElementById('comments');
-    like.forEach(liked => {
-        liked.onclick = function () {
-            if (this.dataset.name == "no") {
-                this.classList.replace("text-slate-400", "text-red-600");
-                this.dataset.name = "yes";
-                document.querySelector(`#${this.id} span`).innerText++;
-                addLike('Houssam', 'YK');
-            } else {
-                this.classList.replace("text-red-600", "text-slate-400");
-                this.dataset.name = "no";
-                document.querySelector(`#${this.id} span`).innerText--;
-            }
-        }
-    })
 } else if (page == "article") {
     let maxtitle = 60;
     let maxcontent = 310;

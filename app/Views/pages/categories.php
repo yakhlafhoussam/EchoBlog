@@ -51,7 +51,8 @@
                         echo '<div class="w-full h-14 flex items-center justify-between px-5">';
                     }
                     echo '
-                        <div class="px-1">
+                        <div class="px-1 flex gap-2 items-center">
+                            <h1 class="text-gray-500 font-semibold">' . ($i + 1) . ' .</h1>
                             <span class="role-badge inline-flex items-center px-2 py-0.5 rounded-full text-lg font-medium bg-opacity-10 bg-['. $_SESSION['category'][$i]['color'] .'] text-[' . $_SESSION['category'][$i]['color'] . ']">
                                 <i class="fas fa-' . $_SESSION['category'][$i]['icon'] . ' mr-1 text-lg"></i> ' . ucfirst($_SESSION['category'][$i]['name']) . '
                             </span>

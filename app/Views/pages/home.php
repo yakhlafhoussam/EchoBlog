@@ -17,7 +17,7 @@
         <?php 
         for ($h=0; $h < count($_SESSION['blog']); $h++) { 
             echo '
-            <div class="w-[48%] h-[400px] rounded-xl bg-white border-2 border-blue-700 border-solid">
+            <div class="w-full max-h-[400px] rounded-xl bg-white border-2 border-blue-700 border-solid">
             <div class="w-full h-[75px] border-blue-100 border-b border-solid rounded-t-xl flex">
                 <div class="flex items-center gap-3 px-3 w-1/2 h-full">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center bg-indigo-600 text-xl text-white font-bold">'
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full h-[265px] py-[10px] relative">
+            <div class="w-full max-h-[265px] py-[10px] relative">
                 <h1 class="text-black text-2xl w-full font-bold p-3">' . $_SESSION['blog'][$h]['title'] . '</h1>
                 <p class="text-gray-600 w-full font-semibold p-3">' . $_SESSION['blog'][$h]['content'] . '</p>
             </div>';
@@ -44,7 +44,10 @@
                 echo '
             <div class="w-full h-[50px] border-blue-100 border-t border-solid rounded-b-xl flex items-center gap-x-10 px-5 relative">
                 <i id="like' . $_SESSION['blog'][$h]['id'] . '" data-name="no" class="likes cursor-pointer fas fa-heart text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['likes_count'] . '</span></i>
-                <i id="two" class="comments cursor-pointer fas fa-comment text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['comments_count'] . '</span></i>
+                <form method="get" action="comments">
+                    <input type="hidden" name="comment" value="' . $_SESSION['blog'][$h]['id'] . '" />
+                    <button id="two" type="submit" class="comments cursor-pointer fas fa-comment text-slate-400 text-lg flex items-center gap-2"><span class="text-sm">' . $_SESSION['blog'][$h]['comments_count'] . '</span></button>
+                </form>
                 <p class="text-gray-400 text-sm font-medium absolute right-5">' . $_SESSION['blog'][$h]['created_at'] . '</p>
             </div>
             </div>';

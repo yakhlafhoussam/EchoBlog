@@ -8,6 +8,7 @@ class Controller {
         extract($data);
 
         $viewFile = __DIR__ . '/../Views/pages/' . $view . '.php';
+        $notFound = $viewFile;
         if (!file_exists($viewFile)) {
             $viewFile = __DIR__ . '/../Views/pages/404.php';
         }
