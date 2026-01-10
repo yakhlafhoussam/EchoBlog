@@ -7,19 +7,21 @@ use App\Models\Reader;
 use App\Models\Author;
 use App\Models\Admin;
 use App\Models\Article;
+use App\Models\Comment;
+use Dom\Comment as DomComment;
 
-class HomeController extends Controller
+class CommentController extends Controller
 {
     public function index()
     {
+        $_SESSION['displaycom'] = $_GET['comment'];
         $blog = new Article();
-        $blog->getAllBlog();
-        if (!isset($_SESSION['reload'])) {
-            $_SESSION['newuser'] = 'no';
+        $blog->getOneBlog($_SESSION['displaycom']);
+        $blog = new Comment();
+        $blog->getAllComment($_SESSION['displaycom']);
+        if (!isset($_SESSION['id'])) {
+            $this->view('404');
         } else {
-            unset($_SESSION['reload']);
-        }
-        if (isset($_SESSION['id'])) {
             if ($_SESSION['role'] == 'reader') {
                 $reader = new Reader();
                 $firstInfo = $reader->first;
@@ -42,26 +44,12 @@ class HomeController extends Controller
                 'last' => $lastInfo,
                 'email' => $emailInfo,
             ];
-            $this->view('home', $data);
-        } else {
-            $this->view('home');
+            $this->view('comment', $data);
         }
     }
-
-    public function newuser()
+    public function sendcomment()
     {
-        if (isset($_POST['request'])) {
-            $readerRequest = new Reader();
-            $readerRequest->request();
-            header('location: /');
-        } else {
-            if (isset($_SESSION['newuser']) && $_SESSION['newuser'] == 'no') {
-                $_SESSION['newuser'] = 'yes';
-            } else {
-                $_SESSION['newuser'] = 'no';
-            }
-            $_SESSION['reload'] = 'on';
-            header('location: /');
-        }
+        $reader = new Comment();
+        $reader->addComment($_POST['pushcomment']);
     }
 }

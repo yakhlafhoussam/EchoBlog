@@ -10,15 +10,17 @@ class Database
     private $servername = 'localhost';
     private $username = 'HoussamYK';
     private $password = 'houssam.123.321';
-    private $dbname = 'library';
+    private $dbname = 'echoblog';
 
     public function connect()
     {
         try {
+            $_SESSION['systeme'] = 'up';
             $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
         } catch (PDOException $e) {
+            $_SESSION['systeme'] = 'down';
             $controllerClass = "App\\Controllers\\WrongController";
             $controller = new $controllerClass();
             $controller->index();

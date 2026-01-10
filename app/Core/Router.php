@@ -2,18 +2,22 @@
 
 namespace App\Core;
 
-class Router {
+class Router
+{
     private $routes = [];
 
-    public function get($uri, $action) {
+    public function get($uri, $action)
+    {
         $this->routes['GET'][$uri] = $action;
     }
 
-    public function post($uri, $action) {
+    public function post($uri, $action)
+    {
         $this->routes['POST'][$uri] = $action;
     }
 
-    public function dispatch() {
+    public function dispatch()
+    {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
@@ -25,9 +29,9 @@ class Router {
             $controller->$methodName();
             return;
         }
-
         $controllerClass = "App\\Controllers\\NotFoundController";
         $controller = new $controllerClass();
         $controller->index();
+        return;
     }
 }
