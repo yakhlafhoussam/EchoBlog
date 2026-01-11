@@ -38,8 +38,10 @@ create table likes(
     FOREIGN KEY (reader_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-create table comments(
+CREATE TABLE comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    article_id INT NOT NULL,
+    reader_id INT NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
